@@ -116,6 +116,26 @@ MongoClient.connect(mongoUri, function(err, db) {
 
     });
 
+    //new    
+    app.post('/update', function(req, res) {
+        var d = new Date();
+        var todayStr = d.getDate()+"/"+(d.getMonth()+1) +"/"+d.getFullYear();
+       
+
+        db.collection('orders').insertOne({hashId: hashId},{
+                                            address: req.body.address || '',
+                                            status: req.body.status || 'Paid',
+                                            remark: req.body.remark
+                                        }, function(err, doc) {
+                                            assert.equal(null, err);
+                                            db.collection('orders').find({}).toArray(function(err, docs) {
+                                                res.render('list', {'orders': docs} );
+                                            });
+                                        }
+        );
+
+    });
+
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
       var err = new Error('Not Found');
