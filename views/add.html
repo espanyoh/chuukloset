@@ -1,0 +1,49 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <title>Add new Order</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <div class="container">
+
+            <br />
+            <H1>เพิ่มรายการลูกค้า</H1>
+           
+            <form action="/add" method="POST" role='form'>
+                <div class="form-group">
+                    <label for="channel">ช่องทางการสั่ง</label>
+                    <input type="text" class="form-control" name="channel" id="channel" placeholder="Line/FB/Shopee" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">ชื่อ/ID</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Name from FB/Line ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="details">รายการสินค้า</label>
+                    <input type="text" class="form-control" name="details" id="details" placeholder="รายละเอียดสินค้า" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">ยอดที่ต้องโอน</label>
+                   <input type="text" class="form-control" name="price" id="price" placeholder="ราคารวมค่าจัดส่ง" required>
+                </div>
+                <div class="form-group">
+                    <label for="shipType">ช่องทางการจัดส่ง</label>
+                   <input type="text" class="form-control" name="shipType" id="shipType" placeholder="EMS/ลทบ/Kerry">
+                </div>
+                <div class="form-group">
+                    <label for="address">ที่อยู่จัดส่ง</label>
+                   <input type="text" class="form-control" name="address" id="address" placeholder="ที่อยู่จัดส่ง">
+                </div>
+                <div class="form-group">
+                    <label for="remark">Remark</label>
+                   <input type="text" class="form-control" name="remark" id="remark" placeholder="อื่นๆ ที่ต้องการแจ้ง">
+                </div>
+                <input type="hidden" name="status" id="status" value="ordered">
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

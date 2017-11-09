@@ -1,0 +1,53 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <title>Payment notify</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <div class="container">
+
+            <br />
+            <H1>แจ้งโอนและที่อยู่จัดส่งสินค้า สำหรับ: {{order.name}}({{order.channel}})</H1>
+           
+            <form action="/update" method="POST" role='form'>
+                <div class="form-group">
+                    <label for="hashId">Hash Reference</label>
+                    <input type="text" class="form-control" name="hashId" value="{{order.hashId}}" id="hashId" placeholder="" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="channel">ช่องทางการสั่ง</label>
+                    <input type="text" class="form-control" name="channel" id="channel" value="{{order.channel}}" placeholder="Line/FB/Shopee" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="name">ชื่อ/ID</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{order.name}}" placeholder="Name from FB/Line ID" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="details">รายการสินค้า</label>
+                    <input type="text" class="form-control" name="details" id="details" value="{{order.details}}" placeholder="รายละเอียดสินค้า" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="price">ยอดที่ต้องโอน</label>
+                   <input type="text" class="form-control" name="price" id="price" value="{{order.price}}" placeholder="ราคารวมค่าจัดส่ง" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="shipType">ช่องทางการจัดส่ง</label>
+                   <input type="text" class="form-control" name="shipType" id="shipType" value="{{order.shipType}}" placeholder="EMS/ลทบ/Kerry" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="address">ที่อยู่จัดส่ง</label>
+                   <input type="text" class="form-control" name="address" id="address" value="{{order.address}}" placeholder="ที่อยู่จัดส่ง" required>
+                </div>
+                <div class="form-group">
+                    <label for="remark">Remark</label>
+                   <input type="text" class="form-control" name="remark" id="remark" value="{{order.remark}}" placeholder="อื่นๆ ที่ต้องการแจ้ง">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </body>
+</html>

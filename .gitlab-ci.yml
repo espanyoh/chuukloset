@@ -1,0 +1,13 @@
+before_script:
+    - apt-get -qq update
+    - npm set progress=false
+    - npm install --silent
+
+deploy:
+    script:
+    - npm run deploy
+    - apt-get install -yqq ruby ruby-dev --silent
+    - gem install dpl
+    - dpl --provider=heroku --app=chuukloset --api key=$HEROKU_API_KEY
+    only:
+    - master

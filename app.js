@@ -40,6 +40,28 @@ MongoClient.connect(mongoUri, function(err, db) {
         });
     });
 
+    //add
+    app.get('/add', function(req, res) {
+        res.render('add', {});
+        
+    });
+    
+    app.get('/edit/:hashId', function(req, res) {
+        console.log('req.params.hashId => '+req.params.hashId);
+        db.collection("orders").find({ hashId: req.params.hashId }).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            res.render('edit', {'order': result[0]} );
+        });
+    });
+
+    //new
+    app.get('/list', function(req, res) {
+        db.collection('orders').find({}).toArray(function(err, docs) {
+            res.render('list', {'orders': docs} );
+        });
+    });
+
     app.post('/', function(req, res) {
 
         db.collection('orders').insertOne({
@@ -60,6 +82,33 @@ MongoClient.connect(mongoUri, function(err, db) {
                                         }, function(err, doc) {
                                             assert.equal(null, err);
                                             res.render('newmovie', {movie: req.body});
+                                        }
+        );
+
+    });
+
+    //new    
+    app.post('/add', function(req, res) {
+        var d = new Date();
+        var todayStr = d.getDate()+"/"+(d.getMonth()+1) +"/"+d.getFullYear();
+        db.collection('orders').insertOne({
+                                            channel: req.body.channel,
+                                            hashId: req.body.hashId || 'hash125',
+                                            password: req.body.password || 'password',
+                                            name: req.body.name,
+                                            details: req.body.details || '',
+                                            price: req.body.price || '',
+                                            address: req.body.address || '',
+                                            shipType: req.body.shipType || '',
+                                            status: req.body.status || 'New',
+                                            orderDate: todayStr ,
+                                            remark: req.body.remark
+                                        }, function(err, doc) {
+                                            assert.equal(null, err);
+                                            //res.render('list', {});
+                                            db.collection('orders').find({}).toArray(function(err, docs) {
+                                                res.render('list', {'orders': docs} );
+                                            });
                                         }
         );
 

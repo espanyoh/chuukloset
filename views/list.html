@@ -1,0 +1,47 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <title>List Order</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script language="javascript">
+            alert('list page');
+            function editOrder(hashId){
+                alert(hashId);
+            }
+        </script>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <br />
+            <H1>Order List</H1>
+            <table class="table table-striped">
+                <tr>
+                    <th>Link</th>
+                    <th>Channel</th>
+                    <th>Name</th>
+                    <th>Order Details</th>
+                    <th>Address</th>
+                    <th>EMS/REG</th>
+                    <th>Status</th>
+                    <th>Order Date</th>
+                </tr>
+                {% for order in orders %}
+                <tr onclick="editOrder('{{order.hashId}}')">
+                    <td>{{order.hashId}}</td>
+                    <td>{{order.channel}}</td>
+                    <td>{{order.name}}</td>
+                    <td>{{order.details}}</td>
+                    <td>{{order.address}}</td>
+                    <td>{{order.shipType}}</td>
+                    <td>{{order.status}}</td>
+                    <td>{{order.orderDate}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </body>
+</html>
