@@ -91,10 +91,12 @@ MongoClient.connect(mongoUri, function(err, db) {
     app.post('/add', function(req, res) {
         var d = new Date();
         var todayStr = d.getDate()+"/"+(d.getMonth()+1) +"/"+d.getFullYear();
+        var hashId = ""+Date.now();
+
         db.collection('orders').insertOne({
                                             channel: req.body.channel,
-                                            hashId: req.body.hashId || 'hash125',
-                                            password: req.body.password || 'password',
+                                            hashId: hashId,
+                                            password: stringGen(20),
                                             name: req.body.name,
                                             details: req.body.details || '',
                                             price: req.body.price || '',
@@ -152,3 +154,16 @@ MongoClient.connect(mongoUri, function(err, db) {
     });
 
 });
+
+
+stringGen = function(len)
+{
+    var text = " ";
+    
+    var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+    
+    for( var i=0; i < len; i++ )
+        text += charset.charAt(Math.floor(Math.random() * charset.length));
+    
+    return text;
+}
