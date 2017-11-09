@@ -10,8 +10,7 @@ var favicon = require('serve-favicon');
 var port = process.env.PORT || 8080;
 var mongoUri = process.env.MONGOLAB_URI ||
         process.env.MONGOHQ_URL ||
-        //'mongodb://localhost/chuudb';
-        'mongodb://chuuadmin:espany9h@ds119768.mlab.com:19768/chuukloset';
+        'mongodb://localhost/chuudb';
 
 var app = express();
 
